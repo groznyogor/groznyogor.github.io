@@ -10,8 +10,8 @@ body {
     font-size: 25px;
     background-color: black;
     color: white;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(47,47,78,1) 76%);
+    background: rgb(51,50,51);
+    background: linear-gradient(90deg, rgba(51,50,51,1) 0%, rgba(50,50,61,1) 35%);
 }
 .cards {
     font-family: 'Montserrat', sans-serif;
