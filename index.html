@@ -1,43 +1,126 @@
-<html>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <title>GROZNYOGOR.DEV</title>
-    <br><br>
-    <body>
-        <h1 data-aos="fade-down" data-aos-duration="10000" class="groznyogorbtext">👋 Hello! Im Szymon</h1>
-        <h4 data-aos="fade-down" data-aos-duration="10000" class="groznyogoritext">I love javascript and i learning python 😻</h4>
-        <a href="https://discord.com/users/1164146607525220373/" class="button">DM me in discord</a>
-        <a href="#" class="button">See my github</a>
-        <a href="#aboutme" class="button">About me</a>
-        <br><br>
-        <section id="mlp">
-            <h1 data-aos="fade-right" data-aos-duration="1000">My last projects</h1>
-            <div class="cards">
-                <div class="card" data-aos="flip-left" data-aos-delay="500" data-aos-duration="1000">
-                    my project
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KANYD.DEV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-12">
+            <div class="text-4xl font-bold">K</div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#umiejetnosci" class="text-gray-300 hover:text-white transition-colors">Umiejętności</a></li>
+                    <li><a href="#projekty" class="text-gray-300 hover:text-white transition-colors">Projekty</a></li>
+                    <li><a href="#kontakt" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">Kontakt</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section id="o-mnie" class="mb-20 flex items-center justify-between">
+                <div class="w-1/2">
+                    <h1 class="text-5xl font-bold mb-4">Cześć, jestem <span class="text-blue-400">Szymon</span>, JavaScript Developer</h1>
+                    <p class="text-xl text-gray-400 mb-8">
+                        Mam 14 lat i chodzę do technikum w Krakowie. Pasjonuję się programowaniem prostych stron WWW jak i zaawansowanych botów Discord.
+                        Jestem osobą potrafiącą pracować w grupie i rozwijać się w dynamicznym środowisku.
+                    </p>
+                    <a href="#kontakt" class="bg-blue-600 text-white px-6 py-3 rounded-full text-lg hover:bg-blue-700 transition-colors">Skontaktuj się</a>
                 </div>
-                <div class="card" data-aos="flip-left" data-aos-delay="500" data-aos-duration="1000">
-                    my project
+                <div class="w-1/2">
+                    <img src="https://fafik.xyz/images/header.webp" alt="Ilustracja programisty" class="w-full rounded-lg shadow-lg"/>
                 </div>
-                <div class="card" data-aos="flip-left" data-aos-delay="500" data-aos-duration="1000">
-                    my project
+            </section>
+
+            <section id="umiejetnosci" class="mb-20">
+                <h2 class="text-3xl font-semibold mb-8 text-center">Moje umiejętności</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <i data-lucide="file-code" class="w-12 h-12 text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">HTML</h3>
+                        <p class="text-gray-400">Używam, głównie do programowania prostych stron. Typowo, strona na której jesteś. :D</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <i data-lucide="palette" class="w-12 h-12 text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">CSS</h3>
+                        <p class="text-gray-400">Używam, do nadawania wyglądu, dla moich stron.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <i data-lucide="code" class="w-12 h-12 text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">JavaScript</h3>
+                        <p class="text-gray-400">Używam, do programowania botów Discord, czasem do backend'u stron web'owych.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <i data-lucide="box" class="w-12 h-12 text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Python</h3>
+                        <p class="text-gray-400">Używam, do pisania prostych (Bardzo prostych) aplikacji.</p>
+                    </div>
                 </div>
-                <div class="card" data-aos="flip-left" data-aos-delay="500" data-aos-duration="1000">
-                    my project
+            </section>
+
+            <section id="projekty" class="mb-20">
+                <h2 class="text-3xl font-semibold mb-8 text-center">Projekty</h2>
+                <div class="space-y-8">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-300">Strona z głosowaniem</h3>
+                        <p class="text-gray-300">Zaprojektowałem i napisałem, w średnim poziomie trudności stronę z głosowaniem, dla mojej byłej szkoły podstawowej.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-300">Bot Discord dla Layonix'a</h3>
+                        <p class="text-gray-300">Stworzyłem zaawansowanego bota Discord, pod serwer o tematyce tzw. "Code" dla Layonix'a.</p>
+                    </div>
                 </div>
-                <div class="card" data-aos="flip-left" data-aos-delay="500" data-aos-duration="1000">
-                    my project
-                </div>
-            </div>
-        </section><br>
-        <section id="aboutme">
-            <h1 data-aos="fade-down" data-aos-duration="10000">📗 About me</h1><br>
-            <p class="aboutmetext">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus consequuntur quia autem nisi, voluptatem et eaque repellendus excepturi quas quis.</p>
-        </section><br>
-        <footer class="copyrighttext">&copy Made with 💚 by groznyogor</footer>
-    </body>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+            </section>
+
+            <section id="kontakt" class="mb-16">
+                <h2 class="text-3xl font-semibold mb-8 text-center">Kontakt</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-center">
+                        <span class="font-semibold text-gray-400 w-24">Discord:</span> 
+                        <a href="https://discord.com/users/1164146607525220373" class="text-blue-400 hover:underline">ogoorr</a>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="font-semibold text-gray-400 w-24">E-MAIL:</span> 
+                        <a href="mailto:admin@cfel.pl" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">admin@cfel.pl</a>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="font-semibold text-gray-400 w-24">GitHub:</span> 
+                        <a href="https://github.com/groznyogor" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">github.com/groznyogor</a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="text-center text-gray-500 mt-12">
+            <p>&copy; 2024 Made by kanyd.dev. Inspiration: fafik.xyz</p>
+        </footer>
+    </div>
+
     <script>
-        AOS.init();
-      </script>
+        $(document).ready(function() {
+            $('a[href^="#"]').on('click', function(event) {
+                event.preventDefault();
+
+                var target = $(this).attr('href');
+                var $target = $(target);
+
+                $('html, body').stop().animate({
+                    'scrollTop': $target.offset().top
+                }, 1000, 'swing');
+            });
+
+            $(window).on('load', function() {
+                $('html, body').scrollTop(0);
+            });
+        });
+    </script>
+</body>
 </html>
