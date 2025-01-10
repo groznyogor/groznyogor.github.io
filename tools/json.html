@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kanyd.pl</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-dark': 'linear-gradient(0deg, rgba(10,10,10,1) 0%, rgba(30,30,30,1) 100%)',
+                    },
+                    keyframes: {
+                        pulse: {
+                            '0%, 100%': {
+                                transform: 'scale(1)',
+                                opacity: '0.8'
+                            },
+                            '50%': {
+                                transform: 'scale(1.1)',
+                                opacity: '0.5'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    },
+                    animation: {
+                        'pulse-circle': 'pulse 2s ease-in-out infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-dark text-white min-h-screen overflow-hidden relative">
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-green-600 bg-opacity-30 rounded-full animate-pulse-circle blur-md"></div>
+        <div class="absolute -top-10 -left-10 w-72 h-72 bg-green-600 bg-opacity-30 rounded-full animate-pulse-circle blur-md delay-500"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-green-500 bg-opacity-20 rounded-full animate-pulse-circle blur-md"></div>
+        <div class="absolute -top-30 -right-30 w-80 h-80 bg-green-500 bg-opacity-20 rounded-full animate-pulse-circle blur-md delay-300"></div>
+    </div>
+
+    <div class="stars-container" id="starsContainer"></div>
+
+    <div class="container mx-auto p-8 relative z-10">
+        <div class="text-center mb-8" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="text-4xl md:text-[2.25rem] font-bold font-sans mb-5 animate-float">Konwerter tekstu na JSON</h1>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="space-y-4">
+                <textarea 
+                    id="textInput" 
+                    class="w-full h-[400px] p-4 rounded-[15px] bg-opacity-10 bg-white backdrop-blur-sm 
+                           border border-white/20 text-white font-mono text-sm resize-none
+                           focus:outline-none focus:ring-2 focus:ring-green-500/50"
+                    placeholder="Wklej tutaj swój tekst..."
+                ></textarea>
+                <button 
+                    onclick="convertToJson()"
+                    class="w-full inline-flex justify-center items-center px-[30px] py-[15px]
+                           bg-gradient-to-b from-[#35B50A] to-[#35B51B]
+                           text-white font-sans font-semibold text-base
+                           rounded-[15px]
+                           transform transition duration-300
+                           hover:scale-105 hover:shadow-lg
+                           active:scale-95"
+                >
+                    Konwertuj na JSON
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <pre id="jsonOutput" 
+                    class="w-full h-[400px] p-4 rounded-[15px] bg-opacity-10 bg-white backdrop-blur-sm 
+                           border border-white/20 text-white font-mono text-sm overflow-auto
+                           focus:outline-none"
+                ></pre>
+                <button 
+                    onclick="copyToClipboard()"
+                    class="w-full inline-flex justify-center items-center px-[30px] py-[15px]
+                           bg-gradient-to-b from-[#35B50A] to-[#35B51B]
+                           text-white font-sans font-semibold text-base
+                           rounded-[15px]
+                           transform transition duration-300
+                           hover:scale-105 hover:shadow-lg
+                           active:scale-95"
+                >
+                    Skopiuj
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createStars() {
+            const container = document.getElementById('starsContainer');
+            const starCount = window.innerWidth < 768 ? 50 : 100;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+
+                const size = Math.random() * 4 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+
+                star.style.animationDelay = `${Math.random() * 2}s`;
+
+                container.appendChild(star);
+            }
+        }
+
+        function convertToJson() {
+            const textInput = document.getElementById('textInput').value;
+            
+            try {
+                const lines = textInput.split('\n').filter(line => line.trim() !== '');
+                
+                const jsonStructure = {
+                    content: lines
+                };
+
+                document.getElementById('jsonOutput').textContent = 
+                    JSON.stringify(jsonStructure, null, 2);
+            } catch (error) {
+                document.getElementById('jsonOutput').textContent = 
+                    `eror kurwo gruba ${error.message}`;
+            }
+        }
+
+        function copyToClipboard() {
+            const jsonOutput = document.getElementById('jsonOutput');
+            const text = jsonOutput.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg transform transition-all duration-300';
+                toast.textContent = 'Skopiowano!';
+                document.body.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 2000);
+            }).catch(err => {
+                console.error('zle sie kurwo skopiowalo', err);
+            });
+        }
+
+        window.addEventListener('load', () => {
+            createStars();
+            AOS.init();
+        });
+    </script>
+</body>
+</html>
